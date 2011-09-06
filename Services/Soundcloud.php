@@ -296,6 +296,20 @@ class Services_Soundcloud
         return $this->_getAccessToken($postData, $curlOptions);
     }
 
+    function accessTokenPassword($username, $password, $postData = array(), $curlOptions = array())
+    {
+        $defaultPostData = array(
+            'client_id' => $this->_clientId,
+            'client_secret' => $this->_clientSecret,
+            'grant_type' => 'password',
+            'username' => $username,
+            'password' => $password
+        );
+        $postData = array_filter(array_merge($defaultPostData, $postData));
+
+        return $this->_getAccessToken($postData, $curlOptions);
+    }
+
     /**
      * Refresh access token
      *
